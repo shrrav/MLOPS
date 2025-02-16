@@ -11,6 +11,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import mlflow
 import mlflow.sklearn
+from matplotlib import pyplot as plt
 
 def parse_args():
     '''Parse input arguments'''
@@ -31,9 +32,9 @@ def parse_args():
 def main(args):
     '''Read train and test datasets, train model, evaluate model, save trained model'''
 
-    # Read train and test data from _______
-    train_df = pd.read_csv(Path(args.train_data) / "train_data.csv")
-    test_df = pd.read_csv(Path(args.test_data) / "test_data.csv")
+    # Read train and test data from CSV
+    train_df = pd.read_csv(Path(args.train_data)/"train.csv")
+    test_df = pd.read_csv(Path(args.test_data)/"test.csv")
 
     # Split the data into ______(X) and ______(y) 
     y_train = train_df['price']  # Specify the target column
@@ -82,4 +83,3 @@ if __name__ == "__main__":
     main(args)
 
     mlflow.end_run()
-
