@@ -12,7 +12,7 @@ inputs:
 
 outputs:
   train_data:
-  	type: uri_file
+    type: uri_file
   test_data:
     type: uri_file
   model_info_output_path:
@@ -45,8 +45,8 @@ jobs:
     display_name: sweep-job
     type: sweep
     inputs:
-      train_data: ${{parent.jobs.prep_data.outputs.train_data}}
-      test_data: ${{parent.jobs.prep_data.outputs.test_data}}
+      train_data:${{parent.jobs.prep_data.outputs.train_data}}
+      test_data:${{parent.jobs.prep_data.outputs.test_data}}
     outputs:
       model_output:
         type: mlflow_model
@@ -63,9 +63,9 @@ jobs:
       goal: minimize
       primary_metric: MSE
     limits:
-      max_total_trials: 20
-      max_concurrent_trials: 10
-      timeout: 7200
+      max_total_trials:20
+      max_concurrent_trials:10
+      timeout:7200
 
 
   register_model:
