@@ -9,9 +9,9 @@ from pathlib import Path
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
 import mlflow
 import mlflow.sklearn
-from matplotlib import pyplot as plt
 
 def parse_args():
     '''Parse input arguments'''
