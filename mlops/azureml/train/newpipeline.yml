@@ -79,18 +79,3 @@ jobs:
       model_path: ${{parent.jobs.sweep_step.outputs.model_output}}
     outputs:
       model_info_output_path: ${{parent.outputs.model_info_output_path}}
-
-
-run: |
-  run_id=$(az ml job create --file /home/runner/work/CICD-MLOps-Final-Proj/CICD-MLOps-Final-Proj/mlops/azureml/train/newpipeline.yml --resource-group MyNewResourceGreatLearning --workspace-name Manoj_092024 --query name -o tsv)
-  if [[ -z "$run_id" ]]; then
-    echo "Job creation failed"
-    az ml job create --file /home/runner/work/CICD-MLOps-Final-Proj/CICD-MLOps-Final-Proj/mlops/azureml/train/newpipeline.yml --resource-group MyNewResourceGreatLearning --workspace-name Manoj_092024 --debug
-    exit 3
-  fi
-  az ml job show -n $run_id --resource-group MyNewResourceGreatLearning --workspace-name Manoj_092024 --web
-  status=$(az ml job show -n $run_id --resource-group MyNewResourceGreatLearning --workspace-name Manoj_092024 --query status -o tsv)
-  if [[ -z "$status" ]]; then
-    echo "Failed to retrieve job status"
-    exit 3
-  fi
