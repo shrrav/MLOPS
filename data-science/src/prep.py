@@ -9,10 +9,7 @@ from pathlib import Path
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 import mlflow
-import logging
-
 
 def parse_args():
     '''Parse input arguments'''
@@ -32,10 +29,6 @@ def main(args):
     # Reading Data
     df = pd.read_csv(args.raw_data)    
 
-    # Encode categorical feature
-    le = LabelEncoder()
-    df['Segment'] = le.fit_transform(df['Segment'])  
-    
     # Split Data into train and test datasets
     train_df, test_df = train_test_split(df, test_size=args.test_train_ratio, random_state=42)
 
