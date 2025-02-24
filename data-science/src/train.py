@@ -13,7 +13,9 @@ import mlflow
 import mlflow.sklearn
 from matplotlib import pyplot as plt
 
-def parse_args():
+mlflow.start_run()
+
+def main():
     '''Parse input arguments'''
 
     parser = argparse.ArgumentParser("train")
@@ -27,9 +29,17 @@ def parse_args():
 
     args = parser.parse_args()
 
-    return args
+    lines = [
+        f"Train dataset input path: {args.train_data}",
+        f"Test dataset input path: {args.test_data}",
+        f"Model output path: {args.model_output}",
+        f"Number of Estimators: {args.n_estimators}",
+        f"Max Depth: {args.max_depth}"
+    ]
 
-def main(args):
+    for line in lines:
+        print(line)
+
     '''Read train and test datasets, train model, evaluate model, save trained model'''
 
     # Read train and test data from CSV
@@ -61,25 +71,10 @@ def main(args):
 
     # Save the model
     mlflow.sklearn.save_model(sk_model=model, path=args.model_output)
-
-if __name__ == "__main__":
     
-    mlflow.start_run()
-
-    # Parse Arguments
-    args = parse_args()
-
-    lines = [
-        f"Train dataset input path: {args.train_data}",
-        f"Test dataset input path: {args.test_data}",
-        f"Model output path: {args.model_output}",
-        f"Number of Estimators: {args.n_estimators}",
-        f"Max Depth: {args.max_depth}"
-    ]
-
-    for line in lines:
-        print(line)
-
-    main(args)
-
     mlflow.end_run()
+    
+if __name__ == "__main__":
+    main()
+
+
