@@ -61,7 +61,7 @@ jobs:
     limits:
       max_total_trials: 20
       max_concurrent_trials: 10
-      timeout: 7200
+      timeout: 10080
 
 
   register_model:
