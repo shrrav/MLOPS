@@ -11,8 +11,8 @@ inputs:
     type: integer
     default: 30
   max_depth:
-    type: integer
-    default: 3
+    type: number
+    default: 15
 outputs:
   model_output:
     type: mlflow_model
