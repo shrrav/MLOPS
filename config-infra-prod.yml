@@ -19,5 +19,5 @@ variables:
 
   # For pipeline reference
   resource_group: MyNewResourceGreatLearning
-  aml_workspace: Manoj_092024
+  aml_workspace: shrav
 
